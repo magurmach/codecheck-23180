@@ -4,6 +4,7 @@ import codecheck.util.Base64;
 import codecheck.util.FileUtil;
 
 import java.io.IOException;
+import java.security.InvalidParameterException;
 
 public class App {
 	public static void main(String[] args) throws IOException {
@@ -26,6 +27,9 @@ public class App {
 					break;
 				case "-o":
 					outputFileName = args[++i];
+					break;
+				default:
+					throw new InvalidParameterException("Invalid argument!");
 			}
 		}
 
