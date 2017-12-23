@@ -63,7 +63,7 @@ Then it uses the `FileUtil.readFile(inputFileName)` to read the
 contents of the file into byte array and then that is passed into
 `Base64.encode(byte[])` for encoding or `Base64.decode(byte[])`
 for decoding based on environment arguments. And the output steam
-then is written by `FileUtil.writeFile(outputStream, inputFileName)`
+then is written by `FileUtil.writeFile(outputStream, outputFileName)`
 to a file.
 
 ### Authors
