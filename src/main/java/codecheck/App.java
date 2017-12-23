@@ -1,10 +1,49 @@
 package codecheck;
 
+import codecheck.util.Base64;
+import codecheck.util.FileUtil;
+
+import java.io.IOException;
+
 public class App {
-	public static void main(String[] args) {
-		for (int i = 0, l = args.length; i < l; i++) {
-			String output = String.format("argv[%s]: %s", i, args[i]);
-			System.out.println(output);
+	public static void main(String[] args) throws IOException {
+		boolean decoding = false;
+		boolean encoding = false;
+		String inputFileName = "";
+		String outputFileName = "";
+		int i;
+
+		for (i = 0; i < args.length; i++) {
+			switch (args[i]) {
+				case "-d":
+					decoding = true;
+					break;
+				case "-e":
+					encoding = true;
+					break;
+				case "-i":
+					inputFileName = args[++i];
+					break;
+				case "-o":
+					outputFileName = args[++i];
+			}
 		}
+
+		if (!decoding) {
+			encoding = true;
+		}
+
+		byte[] inputStream;
+		byte[] outputStream;
+
+		inputStream = FileUtil.readFile(inputFileName);
+
+		if (encoding) {
+			outputStream = Base64.encode(inputStream);
+		} else {
+			outputStream = Base64.decode(inputStream);
+		}
+
+		FileUtil.writeFile(outputFileName, outputStream);
 	}
 }
