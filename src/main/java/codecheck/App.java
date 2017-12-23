@@ -48,6 +48,8 @@ public class App {
 			outputStream = Base64.decode(inputStream);
 		}
 
+		System.out.println(new String(outputStream));
+
 		FileUtil.writeFile(outputFileName, outputStream);
 	}
 }
